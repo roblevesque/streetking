@@ -1,23 +1,32 @@
-body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size: 12pt;  line-height: 1.0;}
+body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size: 12pt;  line-height: 1.0; overflow: hidden;}
 
 .ol-overlaycontainer-stopevent { display: none; }
-@media screen and (min-width: 768px) {
+
+@media (min-width: 300px) and (max-width: 480px) {
+  .btn-responsive { font-size: 2em; line-height: 0.75; }
+  #quiz-area { height: 75%;  font-size: 2vh;}
+  .btnpad { margin-left: 0.1vw; margin-right: 0.1vw;}
+}
+
+@media (min-width: 768px) {
     .wrappoint { display: none; }
 }
-@media (max-width: 768px) {
+
+@media  (max-width: 768px) {
   .btn-responsive {
     padding:2px 4px;
     font-size:80%;
     line-height: 1;
   }
-}
 
+}
 @media (min-width: 769px) and (max-width: 992px) {
   .btn-responsive {
     padding:4px 9px;
     font-size:90%;
     line-height: 1.2;
   }
+
 }
 
 #map { height: 100%; }
@@ -50,9 +59,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 }
 
 #footer {
-  position: absolute;
-  bottom: 0;
-  font-size: 0.5em;
+  font-size: 0.35em;
   font-family: 'Acme', sans-serif;
   height: auto;
   width: inherit;
@@ -67,7 +74,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
   font-size: 1.5em;
   text-align: center;
 }
-#questionbox span { margin: 0 auto; height: inherit; width: inherit;  display: table-cell; vertical-align: middle;}
+#questionbox span { margin: 0 auto; height: inherit; width: inherit;  display: table-cell; vertical-align: middle; }
 
 #questionbox span b { color: #ff2626;}
 #questionbox button { width: 4vw; height: 2vh;}
@@ -77,6 +84,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 .btnpad { margin-left: 1vw; margin-right: 1vw; margin-bottom: 1rem; }
 
 .points { color: #ff2626; }
+
 #pointarea {
   font-family: 'Acme', sans-serif;
   height: auto;
