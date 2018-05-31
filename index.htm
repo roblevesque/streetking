@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Anton|Bowlby+One+SC|Fjalla+One|Play" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/7b4509f5e5.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- Javascript Libraries -->
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <title>Street /:\ King : Find the streets!</title>
+  </head>
+  <body>
+    <div id="header" class="container-fluid"><span>Street<span class="fa fa-road" aria-hidden="true"></span>King<span></div>
+    <div id="map" class="container-fluid"></div>
+    <div id="quiz-area" class="container-fluid">
+        <div id="pointarea" class="container-fluid">
+          <span>Remaining Street Points: <b id="questionPoints" class="points">0</b></span><br class="wrappoint" />
+          <span>Total Points Earned: <b id="totalPoints" class="points">0</b></span>
+        </div>
+        <div id="questionbox" class="container-fluid">
+          <span>
+            Please place the marker on <br class="wrappoint" /><b id="street">Evergreen Terrace</b>
+          </span>
+        </div>
+        <div id="controls" class="container-fluid">
+            <button type="button" id="checkanswer" class="btn btn-primary btn-responsive btnpad">Check Answer</button>
+            <button type="button" id="recenter" class="btn btn-secondary btn-responsive btnpad">Re-Center Marker</button>
+            <button type="button" id="reset" class="btn btn-danger btn-responsive btnpad">Reset Game</button>
+            <button type="button" id="showhint" class="btn btn-warning btn-responsive btnpad">Display Hint</button>
+        </div>
+        <div id="footer" class="container-fluid"> Map Tiles by: <a href="https://stamen.com/">Stamen Design</a> under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br />Maps by <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+    </div>
+
+
+    <div id="notification-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-text">Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

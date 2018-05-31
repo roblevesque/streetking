@@ -1,0 +1,86 @@
+body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size: 12pt;  line-height: 1.0;}
+
+.ol-overlaycontainer-stopevent { display: none; }
+@media screen and (min-width: 768px) {
+    .wrappoint { display: none; }
+}
+@media (max-width: 768px) {
+  .btn-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+
+#map { height: 100%; }
+
+#header {
+    position: absolute;
+    top: 0;
+    height: 4vh;
+    background-color: #a69cac;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    z-index: 10;
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 4vh;
+    color: #474973;
+
+}
+#header span { padding-top: 0.5vh; padding-left: 1vw;}
+#header span span { padding-left: 0.5vw; padding-right: 0.5vw; color: #414141;}
+#quiz-area {
+  position: absolute;
+  bottom: 0;
+  height: 20vh;
+  background: #f5f5f5; /* Old browsers */
+  background: -moz-linear-gradient(top, #f5f5f5 0%, #fafafa 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f5f5f5 0%,#fafafa 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f5f5f5 0%,#fafafa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#fafafa',GradientType=0 ); /* IE6-9 */
+  box-shadow: 0 -3px 5px rgba(0,0,0,0.3);
+  border-top: 1px solid #f1dac4;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.5em;
+  font-family: 'Acme', sans-serif;
+  height: auto;
+  width: inherit;
+  border-top: 1px solid #f1dac4;
+  text-align: center;
+}
+
+#questionbox {
+  display: table;
+  height: 45%;
+  font-family: 'Acme', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+#questionbox span { margin: 0 auto; height: inherit; width: inherit;  display: table-cell; vertical-align: middle;}
+
+#questionbox span b { color: #ff2626;}
+#questionbox button { width: 4vw; height: 2vh;}
+
+#controls { text-align: center; height:20%; }
+
+.btnpad { margin-left: 1vw; margin-right: 1vw; margin-bottom: 1rem; }
+
+.points { color: #ff2626; }
+#pointarea {
+  font-family: 'Acme', sans-serif;
+  height: auto;
+
+}
+
+#pointarea span { padding-right: 1.5vw; padding-left: 1.5vw; float: right;}
