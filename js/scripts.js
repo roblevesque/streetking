@@ -226,7 +226,7 @@ function checkStreetUnderMarker() {
   coord = ol.proj.transform(coord, 'EPSG:3857', 'EPSG:4326');
   var lon = coord[0];
   var lat = coord[1];
-  var revGeocode = 'https://nominatim.openstreetmap.org/reverse.php?format=json&lat=' + lat + '&lon=' + lon +'&zoom=16';
+  var revGeocode = 'https://nominatim.openstreetmap.org/reverse.php?format=json&lat=' + lat + '&lon=' + lon +'&zoom=17';
   var street = "";
   $.getJSON(revGeocode, function( response ) {
       // get lat + lon from first match
