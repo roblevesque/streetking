@@ -167,7 +167,7 @@ $(document).ready(function() {
           layers: [
          new ol.layer.Tile({
               source: new ol.source.Stamen({
-                layer: 'toner',
+                layer: 'toner-lite',
                 projection: globalProj
               })
             }), /*   */
@@ -182,7 +182,7 @@ $(document).ready(function() {
                 }),
                 style: new ol.style.Style({
                   image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                    anchor: [0.5, 40],
+                    anchor: [0.5, 38],
                     anchorXUnits: 'fraction',
                     anchorYUnits: 'pixels',
                     opacity: 0.70,
@@ -230,9 +230,10 @@ function checkStreetUnderMarker() {
   var street = "";
   $.getJSON(revGeocode, function( response ) {
       // get lat + lon from first match
-      //var data = response;
+      var data = response;
       console.log( response.address.road )
       window.streetSelected = response.address.road;
+    //  console.log(response)
       checkAnswer();
 
     });
@@ -312,7 +313,7 @@ function showHint() {
   questionPoints -= 1;
   updatePointDisplay();
   $('#showhint').addClass('disabled');
-    $('#showhint').prop('disabled', true);
+  $('#showhint').prop('disabled', true);
 }
 
 
