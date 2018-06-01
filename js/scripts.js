@@ -257,6 +257,7 @@ function nextStreet() {
     $('#street').html( window.currentStreet[0] );
     window.questionPoints = pointValue;
     $('#showhint').removeClass('disabled');
+    $('#showhint').prop('disabled', false);
     updatePointDisplay();
   } else {
     updatePointDisplay();
@@ -311,6 +312,7 @@ function showHint() {
   questionPoints -= 1;
   updatePointDisplay();
   $('#showhint').addClass('disabled');
+    $('#showhint').prop('disabled', true);
 }
 
 
