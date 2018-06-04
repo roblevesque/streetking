@@ -150,6 +150,7 @@ $(document).ready(function() {
     $.getJSON("assets/streetlist.json", function(response) {
         window.streetList = response;
         $('#totalPointsPossible').html( streetList.length * pointValue );
+        $('#totalStreets').html( streetList.length );
         nextStreet();
 
     });
@@ -251,6 +252,7 @@ function centerMarker() {
 
 /* Choose Street */
 function nextStreet() {
+  $('#completedStreets').html( usedStreets.length );
   var uniqueStreets = streetList.diff( usedStreets );
   if (uniqueStreets.length > 0 ) {
     window.currentStreet = uniqueStreets[Math.floor(Math.random() * uniqueStreets.length)];

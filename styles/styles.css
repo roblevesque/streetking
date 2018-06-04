@@ -91,4 +91,12 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 
 }
 
+#streetcount {
+  font-family: 'Acme', sans-serif;
+  height: auto;
+}
+
+
 #pointarea span { padding-right: 1.5vw; padding-left: 1.5vw; float: right;}
+
+#streetcount span { padding-left: 1.5vw; float: left;}
