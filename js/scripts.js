@@ -25,7 +25,6 @@ $(document).ready(function() {
       window.streetSelected = "";
 
 
-
       /**
        * @constructor
        * @extends {ol.interaction.Pointer}
@@ -150,6 +149,7 @@ $(document).ready(function() {
     /* Load street list */
     $.getJSON("assets/streetlist.json", function(response) {
         window.streetList = response;
+        $('#totalPointsPossible').html( streetList.length * pointValue );
         nextStreet();
 
     });
@@ -290,7 +290,7 @@ function checkAnswer() {
 /* Update Point Display */
 function updatePointDisplay() {
   $('#questionPoints').html( questionPoints );
-  $('#totalPoints').html( totalPoints );
+  $('#totalEarnedPoints').html( totalPoints );
 }
 
 
