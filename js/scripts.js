@@ -346,6 +346,7 @@ function toggleDrivingMode() {
         window.startingLocation = position;
         window.mapobj.getView().setCenter(ol.proj.fromLonLat( [window.userLocation.coords.longitude, window.userLocation.coords.latitude], window.globalProj ));
         centerMarker();
+        dingNotification("Welcome to driving mode! Please navigate to: " + window.currentStreet[0] + ", when ready! ")
     });
     window.locationloop = setInterval(updateLocation,5000);
     $('#drivingMode span').css("color","green");
@@ -371,11 +372,11 @@ function updateLocation() {
     window.mapobj.getView().setCenter(ol.proj.fromLonLat( [window.userLocation.coords.longitude, window.userLocation.coords.latitude], window.globalProj ));
     centerMarker();
   }
-  if ( window.streetLocation == window.currentStreet ) {
+  if ( window.streetLocation == window.currentStreet[0] ) {
     dingNotification("Awesome! You got that right! On to the next street!")
     window.totalPoints += questionPoints;
     nextStreet();
-    speak( "Please navigate to " + window.currentStreet );
+    speak( "Please navigate to " + window.currentStreet[0] );
 
 
   }
