@@ -161,6 +161,7 @@ $(document).ready(function() {
         // get lat + lon from first match
         //var data = response;
         var latlng =  response["0"].geojson.coordinates
+        window.intialLocation = latlng;
          window.pointFeature = new ol.Feature(new ol.geom.Point( ol.proj.fromLonLat( latlng, globalProj ) ));
 
         window.mapobj = new ol.Map({
@@ -343,6 +344,8 @@ function toggleDrivingMode() {
     navigator.geolocation.getCurrentPosition(function(position) {
         window.userLocation = position;
         window.startingLocation = position;
+        window.mapobj.getView().setCenter(ol.proj.fromLonLat( [window.userLocation.coords.longitude, window.userLocation.coords.latitude], window.globalProj ));
+        centerMarker();
     });
     window.locationloop = setInterval(updateLocation,5000);
     $('#drivingMode span').css("color","green");
@@ -353,11 +356,13 @@ function toggleDrivingMode() {
     $('#drivingMode span').removeAttr( "style" ).hide().fadeIn();
     $('.onlyDriving').addClass( "reallyHide" ).hide().fadeOut();
     $('.nondriving').removeClass( "reallyHide" ).hide().fadeIn();
+    window.mapobj.getView().setCenter(ol.proj.fromLonLat(window.intialLocation, window.globalProj ));
+    centerMarker();
    }
 }
 
 function updateLocation() {
-  if( window.drivingModeEnabled == false ) { clearInterval(window.locationloop); }
+  if( window.drivingModeEnabled == false ) { clearInterval(window.locationloop); return true; }
   navigator.geolocation.getCurrentPosition(function(position) {
       window.userLocation = position;
   });
