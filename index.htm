@@ -21,7 +21,10 @@
     <title>Street /:\ King : Find the streets!</title>
   </head>
   <body>
-    <div id="header" class="container-fluid"><span>Street<span class="fa fa-road" aria-hidden="true"></span>King<span></div>
+    <div id="header" class="container-fluid">
+      <span>Street<span class="fa fa-road" aria-hidden="true"></span>King<span>
+      <span id="drivingMode"><span class="fa fa-car"></span></span>
+    </div>
     <div id="map" class="container-fluid"></div>
     <div id="quiz-area" class="container-fluid">
         <div id="streetcount">
@@ -34,12 +37,15 @@
         </div>
         <div id="questionbox" class="container-fluid">
           <span>
-            Please place the marker on <br class="wrappoint" /><b id="street">Evergreen Terrace</b>
+            <span class="nondriving">Please place the marker on </span>
+            <span class="onlyDriving reallyHide">Please Navigate to </span>
+            <br class="wrappoint" /><b id="street">Evergreen Terrace</b>
           </span>
         </div>
         <div id="controls" class="container-fluid">
             <button type="button" id="checkanswer" class="btn btn-primary btn-responsive btnpad">Check Answer</button>
-            <button type="button" id="recenter" class="btn btn-secondary btn-responsive btnpad">Re-Center Marker</button>
+            <button type="button" id="recenter" class="btn btn-secondary btn-responsive btnpad nondriving">Re-Center Marker</button>
+            <button type="button" id="skipStreet" class="btn btn-secondary btn-responsive btnpad onlyDriving reallyHide">Skip Street</button>
             <button type="button" id="reset" class="btn btn-danger btn-responsive btnpad">Reset Game</button>
             <button type="button" id="showhint" class="btn btn-warning btn-responsive btnpad">Display Hint</button>
         </div>
@@ -65,5 +71,8 @@
     </div>
   </div>
 </div>
+<audio id="bellAudio" controls style="display:none">
+  <source src="/assets/bell.mp3" type="audio/mpeg"> 
+</audio>
   </body>
 </html>

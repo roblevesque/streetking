@@ -10,6 +10,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 
 @media (min-width: 768px) {
     .wrappoint { display: none; }
+    #drivingMode { display: none; }
 }
 
 @media  (max-width: 768px) {
@@ -18,7 +19,6 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
     font-size:80%;
     line-height: 1;
   }
-
 }
 @media (min-width: 769px) and (max-width: 992px) {
   .btn-responsive {
@@ -30,6 +30,15 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 }
 
 #map { height: 100%; }
+
+#drivingMode {
+  float: right;
+  font-size: 0.75em;
+ }
+
+ .onlyDriving {  }
+ .reallyHide {  display: none !important; }
+ .dmon  { color: green; }
 
 #header {
     position: absolute;
@@ -74,7 +83,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
   font-size: 1.5em;
   text-align: center;
 }
-#questionbox span { margin: 0 auto; height: inherit; width: inherit;  display: table-cell; vertical-align: middle; }
+#questionbox span { margin: 0 auto; height: inherit; width: inherit;  vertical-align: middle; }
 
 #questionbox span b { color: #ff2626;}
 #questionbox button { width: 4vw; height: 2vh;}

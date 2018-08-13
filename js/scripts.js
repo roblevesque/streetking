@@ -23,6 +23,7 @@ $(document).ready(function() {
       window.totalPoints = 0;
       window.pointValue = 5;
       window.streetSelected = "";
+      window.drivingModeEnabled = false;
 
 
       /**
@@ -209,6 +210,9 @@ $(document).ready(function() {
     $('#recenter').click(function() {
         centerMarker();
     });
+    $('#skipStreet').click(function() {
+      nextStreet();
+    });
     $('#checkanswer').click(function() {
       checkStreetUnderMarker();
     });
@@ -218,6 +222,11 @@ $(document).ready(function() {
     $('#showhint').click(function() {
       showHint();
     });
+    $('#drivingMode').click(function() {
+      toggleDrivingMode();
+      // Animate button
+      $( "#drivingMode" ).removeAttr( "style" ).hide().fadeIn();
+    })
 });
 
 
@@ -324,4 +333,92 @@ function reset(){
   window.totalPoints = 0;
   window.usedStreets = [];
   nextStreet();
+}
+
+function toggleDrivingMode() {
+
+  window.drivingModeEnabled = ! window.drivingModeEnabled;
+
+  if ( window.drivingModeEnabled == true ) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        window.userLocation = position;
+        window.startingLocation = position;
+    });
+    window.locationloop = setInterval(updateLocation,5000);
+    $('#drivingMode span').css("color","green");
+    $('.onlyDriving').removeClass("reallyHide").hide().fadeIn();
+    $('.nondriving').addClass("reallyHide").hide().fadeOut();
+  } else {
+    window.drivingModeEnabled == false;
+    $('#drivingMode span').removeAttr( "style" ).hide().fadeIn();
+    $('.onlyDriving').addClass( "reallyHide" ).hide().fadeOut();
+    $('.nondriving').removeClass( "reallyHide" ).hide().fadeIn();
+   }
+}
+
+function updateLocation() {
+  if( window.drivingModeEnabled == false ) { clearInterval(window.locationloop); }
+  navigator.geolocation.getCurrentPosition(function(position) {
+      window.userLocation = position;
+  });
+  if( window.userLocation ) {
+    getCurrentUserLocation();
+    window.mapobj.getView().setCenter(ol.proj.fromLonLat( [window.userLocation.coords.longitude, window.userLocation.coords.latitude], window.globalProj ));
+    centerMarker();
+  }
+  if ( window.streetLocation == window.currentStreet ) {
+    dingNotification("Awesome! You got that right! On to the next street!")
+    window.totalPoints += questionPoints;
+    nextStreet();
+    speak( "Please navigate to " + window.currentStreet );
+
+
+  }
+}
+
+
+function getCurrentUserLocation() {
+  var lon = window.userLocation.coords.longitude;
+  var lat = window.userLocation.coords.latitude;
+  var revGeocode = 'https://nominatim.openstreetmap.org/reverse.php?format=json&lat=' + lat + '&lon=' + lon +'&zoom=17';
+  var street = "";
+  $.getJSON(revGeocode, function( response ) {
+      // get lat + lon from first match
+      var data = response;
+      window.streetLocation = response.address.road;
+
+    });
+
+    return 0;
+}
+
+
+function speak(text, callback) {
+    var u = new SpeechSynthesisUtterance();
+    u.text = text;
+    u.lang = 'en-US';
+
+    u.onend = function () {
+        if (callback) {
+            callback();
+        }
+    };
+
+    u.onerror = function (e) {
+        if (callback) {
+            callback(e);
+        }
+    };
+
+    speechSynthesis.speak(u);
+}
+
+function dingNotification(text){
+  $('#bellAudio')[0].play();
+  $('#bellAudio').on("ended",function() {
+    speak(text);
+    text="";
+  });
+
+
 }
