@@ -400,7 +400,7 @@ function getCurrentUserLocation() {
 
 
 function speak(text, callback) {
-    var u = new SpeechSynthesisUtterance();
+  /*  var u = new SpeechSynthesisUtterance();
     u.text = text;
     u.lang = 'en-US';
 
@@ -417,6 +417,8 @@ function speak(text, callback) {
     };
 
     speechSynthesis.speak(u);
+*/
+    responsiveVoice.speak( text, "US English Female" );
 }
 
 function dingNotification(text){
@@ -425,6 +427,5 @@ function dingNotification(text){
     speak(text);
     text="";
   });
-
 
 }
