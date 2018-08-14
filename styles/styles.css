@@ -13,12 +13,16 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
     #drivingMode { display: none; }
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 1024px) {
   .btn-responsive {
     padding:2px 4px;
     font-size:80%;
     line-height: 1;
   }
+  #drivingMode {
+  float: right;
+  font-size: 0.75em;
+ }
 }
 @media (min-width: 769px) and (max-width: 992px) {
   .btn-responsive {
@@ -31,10 +35,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 
 #map { height: 100%; }
 
-#drivingMode {
-  float: right;
-  font-size: 0.75em;
- }
+
 
  .onlyDriving {  }
  .reallyHide {  display: none !important; }
