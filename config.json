@@ -1,0 +1,5 @@
+window.config = {
+  "location": "Manchester, CT 06042 USA",
+  "pointvalue": 5,
+  "quizlength": 0,
+}

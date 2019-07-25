@@ -3,27 +3,24 @@ Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
 
-
 $(document).ready(function() {
-    var location = 'Manchester, CT 06042 USA';
-    //var geocode = 'http://open.mapquestapi.com/geocoding/v1/address?outFormat=json&key=RJPgxJZMPv3v3Vll6xrVnyESIGGItzrh&location=' + location;
-    var geocode = 'https://nominatim.openstreetmap.org/search.php?polygon_geojson=1&format=jsonv2&q=' + location;
+    var geocode = 'https://nominatim.openstreetmap.org/search.php?polygon_geojson=1&format=jsonv2&q=' + window.config['location'];
     var mapobj = {}
-      var globalProj = ol.proj.get('EPSG:3857');
-     var wmsProj = ol.proj.get('EPSG:4326');
+    var globalProj = ol.proj.get('EPSG:3857');
+    var wmsProj = ol.proj.get('EPSG:4326');
     window.pointFeature ={};
     //  var globalProj = 'EPSG:3857';
-      //var wmsProj = 'EPSG:4326';
-      window.app = {};
-      var app = window.app;
-      window.streetList = [];
-      window.usedStreets = [];
-      window.currentStreet=[];
-      window.questionPoints = 0;
-      window.totalPoints = 0;
-      window.pointValue = 5;
-      window.streetSelected = "";
-      window.drivingModeEnabled = false;
+    //var wmsProj = 'EPSG:4326';
+    window.app = {};
+    var app = window.app;
+    window.streetList = [];
+    window.usedStreets = [];
+    window.currentStreet=[];
+    window.questionPoints = 0;
+    window.totalPoints = 0;
+    window.pointValue = window.config['pointvalue'];
+    window.streetSelected = "";
+    window.drivingModeEnabled = false;
 
 
       /**
@@ -148,13 +145,8 @@ $(document).ready(function() {
 
 
     /* Load street list */
-    $.getJSON("assets/streetlist.json", function(response) {
-        window.streetList = response;
-        $('#totalPointsPossible').html( streetList.length * pointValue );
-        $('#totalStreets').html( streetList.length );
-        nextStreet();
+    loadStreets();
 
-    });
 
     /* Generate Map */
     $.getJSON(geocode, function( response ) {
@@ -230,6 +222,25 @@ $(document).ready(function() {
     });
 });
 
+function loadStreets() {
+  $.getJSON("assets/streetlist.json", function(response) {
+      if (window.config["quizlength"] > 0 ) {
+        try {
+          window.streetList = getRandom( response, window.config["quizlength"] );
+        }
+        catch(err) {
+          window.streetList = response;
+        }
+      }
+      else {
+        window.streetList = response;
+      }
+      $('#totalPointsPossible').html( streetList.length * pointValue );
+      $('#totalStreets').html( streetList.length );
+      nextStreet();
+
+  });
+}
 
 /* Query streetname under marker */
 function checkStreetUnderMarker() {
@@ -403,11 +414,24 @@ function speak(text) {
     responsiveVoice.speak( text, "US English Female" );
 }
 
-function dingNotification(text){
+function dingNotification(text) {
   $('#bellAudio')[0].play();
   $('#bellAudio').on("ended",function() {
     speak(text);
     text="";
   });
+}
 
+function getRandom(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
 }
