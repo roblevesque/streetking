@@ -22,6 +22,9 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
   #drivingMode {
   float: right;
   font-size: 0.75em;
+  padding-top: 0.5vh;
+  color: #414141;
+  cursor: pointer;
  }
 }
 @media (min-width: 769px) and (max-width: 992px) {
@@ -32,6 +35,7 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
   }
 
 }
+
 
 #map { height: 100%; }
 
@@ -53,8 +57,8 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
     color: #474973;
 
 }
-#header span { padding-top: 0.5vh; padding-left: 1vw;}
-#header span span { padding-left: 0.5vw; padding-right: 0.5vw; color: #414141;}
+#logo { padding-top: 0.75vh; padding-left: 1vw; display: inline-block;}
+#logo span { padding-left: 0.5vw; padding-right: 0.5vw; color: #414141;}
 #quiz-area {
   position: absolute;
   bottom: 0;
@@ -104,6 +108,27 @@ body,html { height: 100%; width:100%; border: 0; padding: 0; margin:0; font-size
 #streetcount {
   font-family: 'Acme', sans-serif;
   height: auto;
+}
+
+#settingsButton {
+  float: right;
+  font-size: 0.75em;
+  padding-top: 0.5vh;
+  padding-left: 1vw;
+  color: #414141;
+  cursor: pointer;
+}
+
+#setTotalStreets {
+  width: 5vw;
+}
+
+#changelogContainer{
+  font-size: 0.85em;
+}
+#changelogContainer h2 {
+    font-size: 0.95em;
+
 }
 
 

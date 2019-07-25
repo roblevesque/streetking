@@ -18,13 +18,15 @@
     <script src="//use.fontawesome.com/7b4509f5e5.js"></script>
     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js" crossorigin="anonymous"></script>
     <script src="config.json"></script>
     <script src="js/scripts.js"></script>
     <title>Street /:\ King : Find the streets!</title>
   </head>
   <body>
     <div id="header" class="container-fluid">
-      <span>Street<span class="fa fa-road" aria-hidden="true"></span>King</span>
+      <span id="logo">Street<span class="fa fa-road" aria-hidden="true"></span>King</span>
+      <span id="settingsButton" data-toggle="modal" data-target="#settingsModal"><span class="fa fa-gear"></span></span>
       <span id="drivingMode"><span class="fa fa-car"></span></span>
     </div>
     <div id="map" class="container-fluid"></div>
@@ -73,6 +75,58 @@
     </div>
   </div>
 </div>
+<!-- Modal Storage -->
+<!-- .. Settings Modal -->
+<div class="modal" id="settingsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Quiz Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <label for="totalquestions"> Total # of streets to quiz on: </label> <input id="setTotalStreets" type="number" min="0" max="999" size="4">
+          <br /> <i> Enter a value of 0 for all of the streets in list</i>
+        </p>
+        <p>
+          <label for="totalquestions"> Street Point Value: </label> <input id="setPointValue" type="number" min="2" max="99" size="4">
+        </p>
+        <p><b>Changes to quiz settings WILL reset the quiz!</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnsettingsModalsave" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- .. Changelog Modal -->
+<div class="modal" id="changelogmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Changelog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="changelogContainer">
+          Insert changelog here
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <audio id="bellAudio" controls style="display:none">
   <source src="assets/bell.mp3" type="audio/mpeg">
 </audio>

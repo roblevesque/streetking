@@ -18,7 +18,6 @@ $(document).ready(function() {
     window.currentStreet=[];
     window.questionPoints = 0;
     window.totalPoints = 0;
-    window.pointValue = window.config['pointvalue'];
     window.streetSelected = "";
     window.drivingModeEnabled = false;
 
@@ -165,12 +164,7 @@ $(document).ready(function() {
                 layer: 'toner-lite',
                 projection: globalProj
               })
-            }), /*   */
-    /*        new ol.layer.Tile({
-      source: new ol.source.XYZ({
-        url: 'https://api.mapbox.com/styles/v1/roblevesque/cjhtdvrv15yq32so0n8mk62ct/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicm9ibGV2ZXNxdWUiLCJhIjoiY2podGRjZWc3MGNpaDN2bHNvdm10eGhmbyJ9.Ti4MGZCewCDeVDSJIeWtPQ'
-      })
-    }) */
+            }),
           new ol.layer.Vector({
                 source: new ol.source.Vector({
                   features: [pointFeature]
@@ -200,6 +194,22 @@ $(document).ready(function() {
 
       });
 
+    /* Check the changelog for changes */
+    checkChangelog()
+
+    /* Setup button actions */
+    $('#settingsButton').click(function() {
+      $("#setTotalStreets").val( window.config['quizlength'] );
+      $("#setPointValue").val( window.config['pointvalue'] );
+    });
+    $('#btnsettingsModalsave').click(function() {
+      if ( window.config['quizlength'] != $('#setTotalStreets').val() ||  window.config['pointvalue'] != $('#setPointValue').val() ) {
+        window.config['quizlength'] = $('#setTotalStreets').val();
+        window.config['pointvalue'] = $('#setPointValue').val();
+        loadStreets();
+        reset();
+      }
+    });
     $('#recenter').click(function() {
         centerMarker();
     });
@@ -222,6 +232,7 @@ $(document).ready(function() {
     });
 });
 
+/* FUNCTION: Load streetlist. Self explanitory */
 function loadStreets() {
   $.getJSON("assets/streetlist.json", function(response) {
       if (window.config["quizlength"] > 0 ) {
@@ -235,7 +246,7 @@ function loadStreets() {
       else {
         window.streetList = response;
       }
-      $('#totalPointsPossible').html( streetList.length * pointValue );
+      $('#totalPointsPossible').html( streetList.length * window.config['pointvalue'] );
       $('#totalStreets').html( streetList.length );
       nextStreet();
 
@@ -263,7 +274,7 @@ function checkStreetUnderMarker() {
     return 0;
 }
 
-/* Center marker on map */
+/* Center marker on current map view */
 function centerMarker() {
   var coordinate = pointFeature.getGeometry().getCoordinates();
   var center = mapobj.getView().getCenter()
@@ -271,7 +282,7 @@ function centerMarker() {
 }
 
 
-/* Choose Street */
+/* Progress to next (random) street */
 function nextStreet() {
   $('#completedStreets').html( usedStreets.length );
   var uniqueStreets = streetList.diff( usedStreets );
@@ -279,13 +290,13 @@ function nextStreet() {
     window.currentStreet = uniqueStreets[Math.floor(Math.random() * uniqueStreets.length)];
     window.usedStreets.push( window.currentStreet );
     $('#street').html( window.currentStreet[0] );
-    window.questionPoints = pointValue;
+    window.questionPoints = window.config['pointvalue'];
     $('#showhint').removeClass('disabled');
     $('#showhint').prop('disabled', false);
     updatePointDisplay();
   } else {
     updatePointDisplay();
-    presentModal("All Done Bee!", "Hey! You've done it! You've gone through all of the streets! Go you!")
+    presentModal("All Done B!", "Hey! You've done it! You've gone through all of the streets! Go you!")
   }
 
 }
@@ -344,7 +355,10 @@ function showHint() {
 function reset(){
   window.totalPoints = 0;
   window.usedStreets = [];
+  mapobj.getView().setCenter(ol.proj.fromLonLat( window.intialLocation, window.globalProj ) );
+  centerMarker();
   nextStreet();
+
 }
 
 function toggleDrivingMode() {
@@ -434,4 +448,24 @@ function getRandom(arr, n) {
         taken[x] = --len in taken ? taken[len] : len;
     }
     return result;
+}
+
+function checkChangelog() {
+  $.ajax({
+    url: 'CHANGELOG.md',
+    type: 'get',
+    async: 'true',
+    ifModified: true,
+    success: function(text, textStatus, xhr) {
+      if (xhr.status == 200) {
+        var converter = new showdown.Converter();
+        var options = converter.getOptions();
+        options.strikethrough = true;
+        options.simplifiedAutoLink = true;
+        html = converter.makeHtml(text);
+        $("#changelogContainer").html(html);
+        $('#changelogmodal').modal('show');
+      }
+    }
+  });
 }
