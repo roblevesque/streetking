@@ -1,5 +1,5 @@
 window.config = {
-  "location": "[Town], [County], [State/Region] [ZipCode (if applicable)] [Country]",  // Be as specific as necessary to get a good center point. Test it out on openstreetmap.org to be sure.
+  "location": "Town, County, State/Region ZipCode (if applicable) Country",  // Be as specific as necessary to get a good center point. Test it out on openstreetmap.org to be sure.
   "pointvalue": 5,   // Initial value of each street. Player will receive this amount of points if they guess in one try with no hint.
   "quizlength": 4,   // How many streets to quiz on. 0 (Zero) is all of them in the list
   "minzoom": 12,  // How far out one can zoom. May be useful for larger areas.

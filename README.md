@@ -27,7 +27,8 @@ In either case there are two things that *must* be modified to localize it for y
 ```
 [
   ["Street Rd","Some hint"],
-  ["Street2  Ln","Some hint"],
+  ["Street2  Ln","Some hint"]
+
 ]
 ```
 
