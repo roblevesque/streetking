@@ -1,6 +1,0 @@
-window.config = {
-  "location": "Manchester, CT 06042 USA",
-  "pointvalue": 5,
-  "quizlength": 4,
-  "minzoom": 12,  // How far out one can zoom. May be useful for larger areas.
-}
