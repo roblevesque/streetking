@@ -19,8 +19,9 @@ Any other department is welcome to either clone the code to their own server or 
 
 In either case there are two things that *must* be modified to localize it for your own district.
 
-1. In `config.json` you will want to modify the `location` option to fit your location. I'd recommend a similar format to what is already there: 'Town, State Zip Country'
-2. Modify `assets/streetlist.json` with a list of streets and cross streets or hints at your pleasure.
+1. Copy `config.json.dist` to `config.json` and copy `assets/streetlist.json.dist` to `assets/streetlist.json`
+2. In `config.json` you will want to modify the `location` option to fit your location. I'd recommend a similar format to what is already there: 'Town, State Zip Country'
+3. Modify `assets/streetlist.json` with a list of streets and cross streets or hints at your pleasure.
   The format for `streetlist.json` is as follows:
 
 ```
