@@ -149,12 +149,11 @@ $(document).ready(function() {
 
     /* Generate Map */
     $.getJSON(geocode, function( response ) {
-        // get lat + lon from first match
-        //var data = response;
-        var latlng =  response["0"].geojson.coordinates
+        // get lat + lon from first match.
+        //var latlng =  response["0"].geojson.coordinates
+        var latlng = [parseFloat( response["0"].lon ) , parseFloat( response["0"].lat )]
         window.intialLocation = latlng;
-         window.pointFeature = new ol.Feature(new ol.geom.Point( ol.proj.fromLonLat( latlng, globalProj ) ));
-
+        window.pointFeature = new ol.Feature(new ol.geom.Point( ol.proj.fromLonLat( latlng, globalProj ) ));
         window.mapobj = new ol.Map({
          interactions: ol.interaction.defaults().extend([new app.Drag()]),
           target: 'map',
@@ -187,7 +186,7 @@ $(document).ready(function() {
             center: ol.proj.fromLonLat( latlng, globalProj ),
             zoom: 14,
             maxZoom: 15,
-            minZoom: 12
+            minZoom: window.config["minzoom"]
 
           }),
         });

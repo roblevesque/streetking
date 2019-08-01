@@ -1,3 +1,6 @@
+## August 1st 2019
+* Fix bug that may prevent some areas not to be drawn appropriately. (Reported by Reddit user /u/remlik. Thanks remlik!)
+
 ## July 25th 2019
 * Added this nifty changes modal
 * Added settings panel
